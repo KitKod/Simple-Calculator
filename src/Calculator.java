@@ -26,55 +26,42 @@ public class Calculator implements CalculatorInterface {
     }
 
     public double calculateResults() throws Exception {
-        ArrayList<Double> res = new ArrayList<>();
+        Stack<Double> res = new Stack<>();
 
         while (!stackOfOperator.empty()) {
-//            if (!stackOfOperator.empty()) {
-//                arrOfOperand.add(stackOfOperator.pop().getValue());
-//            }
             arrOfOperand.add(stackOfOperator.pop().getValue());
         }
 
         System.out.println(arrOfOperand);
 
         for (int i = 0; i < arrOfOperand.size(); i++) {
-            double itemInRes = 0;
+            double operand1;
+            double operand2;
+
             String curenntInArr = arrOfOperand.get(i);
             switch (curenntInArr) {
                 case "+":
-                    itemInRes = res.remove(0);
-                    for (Double item : res) {
-                        itemInRes += item;
-                    }
-                    res.clear();
-                    res.add(itemInRes);
+                    operand1 = res.pop();
+                    operand2 = res.pop();
+                    res.push(operand1 + operand2);
                     break;
                 case "-":
-                    itemInRes = res.remove(0);
-                    for (Double item : res) {
-                        itemInRes -= item;
-                    }
-                    res.clear();
-                    res.add(itemInRes);
+                    operand1 = res.pop();
+                    operand2 = res.pop();
+                    res.push(operand1 - operand2);
                     break;
                 case "*":
-                    itemInRes = res.remove(0);
-                    for (Double item : res) {
-                        itemInRes *= item;
-                    }
-                    res.clear();
-                    res.add(itemInRes);
+                    operand1 = res.pop();
+                    operand2 = res.pop();
+                    res.push(operand1 * operand2);
                     break;
                 case "/":
-                    itemInRes = res.remove(0);
-                    for (Double item : res) {
-                        itemInRes /= item;
-                    }
-                    res.clear();
-                    res.add(itemInRes);
+                    operand1 = res.pop();
+                    operand2 = res.pop();
+                    res.push(operand1 / operand2);
                     break;
                 default:
-                    res.add(Double.valueOf(curenntInArr));
+                    res.push(Double.valueOf(curenntInArr));
                     break;
             }
         }
