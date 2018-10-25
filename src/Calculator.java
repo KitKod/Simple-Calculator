@@ -5,6 +5,9 @@ public class Calculator implements CalculatorInterface {
 
     private Stack<Operator> stackOfOperator = new Stack<>();
     private ArrayList<String> arrOfOperand = new ArrayList<>();
+    private Stack<Double> res;
+
+    private double result;
 
     public void enterOperand(double var1) throws Exception {
         arrOfOperand.add(String.valueOf(var1));
@@ -26,13 +29,11 @@ public class Calculator implements CalculatorInterface {
     }
 
     public double calculateResults() throws Exception {
-        Stack<Double> res = new Stack<>();
+        res = new Stack<>();
 
         while (!stackOfOperator.empty()) {
             arrOfOperand.add(stackOfOperator.pop().getSign());
         }
-
-        System.out.println(arrOfOperand);
 
         for (String item : arrOfOperand) {
             double operand1;
@@ -72,20 +73,27 @@ public class Calculator implements CalculatorInterface {
                     break;
             }
         }
-        return res.get(0);
+
+        saveResultToMemory();
+        arrOfOperand.clear();
+        double output = res.get(0);
+        res.clear();
+        return output;
     }
 
     public void saveResultToMemory() {
-
+        this.result = res.peek();
     }
 
     public double returnResultFromMemory() throws Exception {
-
-        return 0;
+        if (this.result == 0.0){
+            throw new ResultFromMemoryException("Memory is empty");
+        }
+        return this.result;
     }
 
     public void clearMemory() {
-
+        result = 0.0;
     }
 
     public void addOperandWrapper(StringBuilder digitBuf) throws Exception {
