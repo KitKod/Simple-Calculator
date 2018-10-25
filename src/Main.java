@@ -14,16 +14,16 @@ public class Main {
             String temp = String.valueOf(str.charAt(i));
             switch (temp) {
                 case "+":
-                    calculator.enterOperator(new Operator(temp, 0));
+                    calculator.enterOperator(Operator.ADD);
                     break;
                 case "-":
-                    calculator.enterOperator(new Operator(temp, 0));
+                    calculator.enterOperator(Operator.SUBTRACT);
                     break;
                 case "*":
-                    calculator.enterOperator(new Operator(temp, 1));
+                    calculator.enterOperator(Operator.MULTIPLY);
                     break;
                 case "/":
-                    calculator.enterOperator(new Operator(temp, 1));
+                    calculator.enterOperator(Operator.DIVIDE);
                     break;
                 default:
                     calculator.enterOperand(Double.valueOf(temp));

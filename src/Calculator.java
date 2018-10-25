@@ -16,7 +16,7 @@ public class Calculator implements CalculatorInterface {
         } else {
             int priorityInStack = stackOfOperator.peek().getPriority();
             if (priorityInStack >= var1.getPriority()) {
-                arrOfOperand.add(stackOfOperator.pop().getValue());
+                arrOfOperand.add(stackOfOperator.pop().getSign());
                 stackOfOperator.push(var1);
             } else {
                 stackOfOperator.push(var1);
@@ -29,7 +29,7 @@ public class Calculator implements CalculatorInterface {
         Stack<Double> res = new Stack<>();
 
         while (!stackOfOperator.empty()) {
-            arrOfOperand.add(stackOfOperator.pop().getValue());
+            arrOfOperand.add(stackOfOperator.pop().getSign());
         }
 
         System.out.println(arrOfOperand);
@@ -43,22 +43,22 @@ public class Calculator implements CalculatorInterface {
                 case "+":
                     operand1 = res.pop();
                     operand2 = res.pop();
-                    res.push(operand1 + operand2);
+                    res.push(operand2 + operand1);
                     break;
                 case "-":
                     operand1 = res.pop();
                     operand2 = res.pop();
-                    res.push(operand1 - operand2);
+                    res.push(operand2 - operand1);
                     break;
                 case "*":
                     operand1 = res.pop();
                     operand2 = res.pop();
-                    res.push(operand1 * operand2);
+                    res.push(operand2 * operand1);
                     break;
                 case "/":
                     operand1 = res.pop();
                     operand2 = res.pop();
-                    res.push(operand1 / operand2);
+                    res.push(operand2 / operand1);
                     break;
                 default:
                     res.push(Double.valueOf(curenntInArr));

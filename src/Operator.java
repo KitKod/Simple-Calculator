@@ -1,15 +1,21 @@
-public class Operator {
+public enum Operator {
+    ADD("+", 0),
+    SUBTRACT("-", 0),
+    MULTIPLY("*", 1),
+    DIVIDE("/", 1),
+    SQUARE("s", 1),
+    ROOT("r", 1);
 
-    private String value;
+    private String sign;
     private int priority;
 
-    public Operator(String value, int priority) {
-        this.value = value;
+    Operator(String sign, int priority){
+        this.sign = sign;
         this.priority = priority;
     }
 
-    public String getValue() {
-        return value;
+    public String getSign() {
+        return sign;
     }
 
     public int getPriority() {
