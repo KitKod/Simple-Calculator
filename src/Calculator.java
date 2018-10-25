@@ -34,12 +34,11 @@ public class Calculator implements CalculatorInterface {
 
         System.out.println(arrOfOperand);
 
-        for (int i = 0; i < arrOfOperand.size(); i++) {
+        for (String item : arrOfOperand) {
             double operand1;
             double operand2;
 
-            String curenntInArr = arrOfOperand.get(i);
-            switch (curenntInArr) {
+            switch (item) {
                 case "+":
                     operand1 = res.pop();
                     operand2 = res.pop();
@@ -60,8 +59,16 @@ public class Calculator implements CalculatorInterface {
                     operand2 = res.pop();
                     res.push(operand2 / operand1);
                     break;
+                case "s":
+                    operand1 = res.pop();
+                    res.push(operand1 * operand1);
+                    break;
+                case "r":
+                    operand1 = res.pop();
+                    res.push(Math.sqrt(operand1));
+                    break;
                 default:
-                    res.push(Double.valueOf(curenntInArr));
+                    res.push(Double.valueOf(item));
                     break;
             }
         }

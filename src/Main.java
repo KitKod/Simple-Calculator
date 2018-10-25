@@ -7,7 +7,7 @@ public class Main {
         Calculator calculator = new Calculator();
         Scanner scanner = new Scanner(System.in);
 
-        String str = scanner.nextLine();
+        String str = scanner.nextLine().replaceAll("\\s","");
         System.out.println(str);
 
         for (int i = 0; i < str.length(); i++) {
@@ -24,6 +24,12 @@ public class Main {
                     break;
                 case "/":
                     calculator.enterOperator(Operator.DIVIDE);
+                    break;
+                case "s":
+                    calculator.enterOperator(Operator.SQUARE);
+                    break;
+                case "r":
+                    calculator.enterOperator(Operator.ROOT);
                     break;
                 default:
                     calculator.enterOperand(Double.valueOf(temp));
