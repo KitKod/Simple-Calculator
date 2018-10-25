@@ -87,4 +87,11 @@ public class Calculator implements CalculatorInterface {
     public void clearMemory() {
 
     }
+
+    public void addOperandWrapper(StringBuilder digitBuf) throws Exception {
+        if (!digitBuf.toString().equals("")) {
+            enterOperand(Double.valueOf(digitBuf.toString()));
+            digitBuf.delete(0, digitBuf.length());
+        }
+    }
 }
